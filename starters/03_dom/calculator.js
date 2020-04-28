@@ -1,7 +1,7 @@
 let input = document.querySelector('input');
-let inputDisplay = 0;
 let firstNumber = 0;
 let operator = '';
+
 const readButton = (btn) => {
   let btnTxt = btn.srcElement.textContent;
   if (/[0-9.]/.test(btnTxt)) {
@@ -18,16 +18,19 @@ const readButton = (btn) => {
       case '-':
         input.value = +firstNumber - +input.value;
         break;
-      case '*':
+      case 'x':
         input.value = +firstNumber * +input.value;
         break;
       case '/':
         input.value = +firstNumber / +input.value;
         break;
     }
+  } else {
+    // for 'c'
+    input.value = '';
   }
 };
 
-let allButtons = [...document.querySelectorAll('button')].map((btn) =>
-  btn.addEventListener('click', readButton)
-);
+document
+  .querySelectorAll('button')
+  .forEach((btn) => btn.addEventListener('click', readButton));
