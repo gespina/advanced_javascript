@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node -r esm node_modules/.bin/jasmine",
     "start": "http-server",
     "build": "webpack"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "esm": "^3.2.25",
     "http-server": "^0.12.3",
+    "jasmine": "^3.5.0",
     "ts-loader": "^7.0.1",
     "typescript": "^3.8.3",
     "webpack": "^4.43.0",
