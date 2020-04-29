@@ -2,8 +2,7 @@ let input = document.querySelector('input');
 let firstNumber = 0;
 let operator = '';
 
-const readButton = (btn) => {
-  let btnTxt = btn.srcElement.textContent;
+const readButton = (btnTxt) => {
   if (/[0-9.]/.test(btnTxt)) {
     input.value = input.value + btnTxt;
   } else if (/[\+\-\x\/]/.test(btnTxt)) {
@@ -33,4 +32,8 @@ const readButton = (btn) => {
 
 document
   .querySelectorAll('button')
-  .forEach((btn) => btn.addEventListener('click', readButton));
+  .forEach((btn) =>
+    btn.addEventListener('click', ({ srcElement }) =>
+      readButton(srcElement.textContent)
+    )
+  );
