@@ -35,4 +35,7 @@ describe('Roman numeral converter', () => {
     let actual = convert('CDXLIV');
     expect(actual).toEqual(444);
   });
+  it('should fail for non-roman numeral values', () => {
+    expect(() => convert('AAA')).toThrowError();
+  });
 });

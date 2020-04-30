@@ -9,22 +9,24 @@ const ROMAN_TO_DECIMAL = {
 };
 
 const convert = (romanNumeral) => {
-  return romanNumeral
-    .split('')
-    .map((s) => s.toLowerCase())
-    .reduce((acc, curr, idx, arr) => {
+  let romanNumIn = romanNumeral.split('').map((s) => s.toLowerCase());
+  let keys = Object.keys(ROMAN_TO_DECIMAL);
+
+  if (romanNumIn.some((s) => !keys.includes(s))) {
+    throw new Error('Please enter a valid Roman Numeral value');
+  } else {
+    return romanNumIn.reduce((acc, curr, idx, arr) => {
       if (idx === 0) {
         acc += ROMAN_TO_DECIMAL[curr];
       } else {
-        let currentVal = ROMAN_TO_DECIMAL[arr[idx]];
+        let currVal = ROMAN_TO_DECIMAL[arr[idx]];
         let prevVal = ROMAN_TO_DECIMAL[arr[--idx]];
         acc =
-          currentVal > prevVal
-            ? acc - prevVal + currentVal - prevVal
-            : acc + currentVal;
+          currVal > prevVal ? acc - prevVal + currVal - prevVal : acc + currVal;
       }
       return acc;
     }, 0);
+  }
 };
 
 export default convert;
