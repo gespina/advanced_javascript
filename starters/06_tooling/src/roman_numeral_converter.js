@@ -9,7 +9,7 @@ const ROMAN_TO_DECIMAL = {
 };
 
 const convert = (romanNumeral) => {
-  let romanNumIn = [...romanNumeral].map((s) => s.toLowerCase());
+  let romanNumIn = [...romanNumeral.toLowerCase()];
   let keys = Object.keys(ROMAN_TO_DECIMAL);
 
   if (romanNumIn.some((s) => !keys.includes(s))) {
@@ -17,13 +17,12 @@ const convert = (romanNumeral) => {
   } else {
     return romanNumIn.reduce((acc, curr, idx, arr) => {
       if (idx === 0) {
-        acc += ROMAN_TO_DECIMAL[curr];
+        return ROMAN_TO_DECIMAL[curr];
       } else {
         let currVal = ROMAN_TO_DECIMAL[curr];
         let prevVal = ROMAN_TO_DECIMAL[arr[--idx]];
-        acc = currVal > prevVal ? acc + currVal - 2 * prevVal : acc + currVal;
+        return currVal > prevVal ? (acc + currVal - 2 * prevVal) : acc + currVal;
       }
-      return acc;
     }, 0);
   }
 };
